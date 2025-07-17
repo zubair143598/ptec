@@ -1,9 +1,11 @@
+"use client"
 import React from 'react'
+import FirstYear from "@/component/admin/FirstYear"
 
 const page = () => {
   return (
     <div>
-      this is DMCs
+      <FirstYear />
     </div>
   )
 }
