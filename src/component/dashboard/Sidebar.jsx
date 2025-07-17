@@ -26,13 +26,13 @@ const Sidebar = () => {
         </li>
         <li>
           <Link
-            href="/admin/dmcs"
+            href="/admin/first-year"
             className={`hover:text-yellow-400 px-2 py-1 rounded flex gap-3 ${
-              pathName === "/admin/dmcs" ? "bg-[#0A7FC3]" : ""
+              pathName === "/admin/first-year" ? "bg-[#0A7FC3]" : ""
             }`}
           >
             <IoMdContacts size={18} className="mt-[2px]" />
-            <span className="md:block hidden"> Contact</span>
+            <span className="md:block hidden">First Year</span>
           </Link>
         </li>
       </ul>

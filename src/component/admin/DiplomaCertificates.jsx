@@ -48,6 +48,28 @@ const DiplomaCertificates = () => {
     }
   };
 
+  const handleDownload = async (id, rollNo) => {
+    try {
+      const res = await axios.get(`/api/diploma-certificate/${id}/download`, {
+        responseType: "blob",
+      });
+
+      const url = URL.createObjectURL(
+        new Blob([res.data], { type: "application/pdf" })
+      );
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `Diploma-${rollNo}.pdf`;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+    } catch (e) {
+      console.error(e);
+      alert("Unable to generate certificate");
+    }
+  };
+
   const handleAddOpen = () => setAddOpen(true);
   const handleAddClose = () => setAddOpen(false);
 
@@ -138,7 +160,11 @@ const DiplomaCertificates = () => {
             >
               Delete
             </Button>
-            <Button size="small" variant="outlined">
+            <Button
+              size="small"
+              variant="outlined"
+              onClick={() => handleDownload(params.row.id, params.row.rollNo)}
+            >
               Download
             </Button>
           </Stack>
