@@ -13,5 +13,6 @@ export const studentFormSchema = z.object({
   name: z.string().min(1, "Name is required"),
   fatherName: z.string().min(1, "Father's name is required"),
   institute: z.string().min(1, "Institute is required"),
+  year: z.enum(['1st Year', '2nd Year']).optional(),
   courses: z.array(courseSchema).min(1, "At least one course is required")
 });

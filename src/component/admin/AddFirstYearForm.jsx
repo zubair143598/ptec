@@ -17,8 +17,8 @@ import {
 } from "@mui/material";
 import { Add, Remove } from "@mui/icons-material";
 
-export const AddStudentForm = ({ open, onClose, onSubmit }) => {
- const {
+export const AddFirstYearForm = ({ open, onClose, onSubmit }) => {
+  const {
     control,
     handleSubmit,
     register,
