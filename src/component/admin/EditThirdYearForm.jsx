@@ -2,7 +2,7 @@
 import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, useFieldArray } from "react-hook-form";
-import { studentFormSchema } from "../../types/firstYear";
+import { thirdYearFormSchema } from "../../types/thirdYear";
 import {
   Box,
   Button,
@@ -17,30 +17,41 @@ import {
 } from "@mui/material";
 import { Add, Remove } from "@mui/icons-material";
 
-export const AddFirstYearForm = ({ open, onClose, onSubmit }) => {
+export const EditThirdYearForm = ({
+  open,
+  onClose,
+  onSubmit,
+  studentData,
+  isSubmitting,
+}) => {
   const {
     control,
     handleSubmit,
     register,
-    formState: { errors, isSubmitting },
+    formState: { errors },
     reset,
   } = useForm({
-    resolver: zodResolver(studentFormSchema),
+    resolver: zodResolver(thirdYearFormSchema),
     defaultValues: {
-      session: "",
-      name: "",
-      fatherName: "",
-      institute: "",
-      year: "",
-      courses: [
-        {
-          courseName: "",
-          totalTheory: 0,
-          totalPractical: 0,
-          obtainedTheory: 0,
-          obtainedPractical: 0,
-        },
-      ],
+      session: studentData?.session || "",
+      name: studentData?.name || "",
+      fatherName: studentData?.fatherName || "",
+      institute: studentData?.institute || "",
+      rollNo: studentData?.rollNo || "",
+      registrationNo: studentData?.registrationNo || "",
+      year: "3rd Year",
+      courses:
+        studentData?.courses?.length > 0
+          ? studentData.courses
+          : [
+              {
+                courseName: "",
+                totalTheory: 0,
+                totalPractical: 0,
+                obtainedTheory: 0,
+                obtainedPractical: 0,
+              },
+            ],
     },
   });
 
@@ -49,15 +60,29 @@ export const AddFirstYearForm = ({ open, onClose, onSubmit }) => {
     name: "courses",
   });
 
+  React.useEffect(() => {
+    if (studentData) {
+      reset({
+        session: studentData.session,
+        name: studentData.name,
+        fatherName: studentData.fatherName,
+        institute: studentData.institute,
+        rollNo: studentData?.rollNo,
+        registrationNo: studentData?.registrationNo,
+        year: "3rd Year",
+        courses: studentData.courses,
+      });
+    }
+  }, [studentData, reset]);
+
   const handleFormSubmit = async (data) => {
     await onSubmit(data);
-    reset();
     onClose();
   };
 
   return (
     <Dialog open={open} onClose={onClose} maxWidth="md" fullWidth>
-      <DialogTitle>Add New Student</DialogTitle>
+      <DialogTitle>Edit Student</DialogTitle>
       <form onSubmit={handleSubmit(handleFormSubmit)}>
         <DialogContent>
           <Box
@@ -98,20 +123,26 @@ export const AddFirstYearForm = ({ open, onClose, onSubmit }) => {
               fullWidth
               margin="normal"
             />
+
             <TextField
-              {...register("year")}
-              select
-              label="Year"
-              error={!!errors.year}
-              helperText={errors.year?.message}
+              {...register("rollNo")}
+              label="Roll No"
+              error={!!errors.rollNo}
+              helperText={errors.rollNo?.message}
               fullWidth
               margin="normal"
-              SelectProps={{ native: true }}
-            >
-              <option value="">Select Year</option>
-              <option value="1st Year">1st Year</option>
-              <option value="2nd Year">2nd Year</option>
-            </TextField>
+              required
+            />
+            <TextField
+              {...register("registrationNo")}
+              label="Registration No"
+              error={!!errors.registrationNo}
+              helperText={errors.registrationNo?.message}
+              fullWidth
+              margin="normal"
+              required
+            />
+            <input type="hidden" {...register("year")} value="3rd Year" />
           </Box>
 
           <Typography variant="h6" gutterBottom>
@@ -209,7 +240,7 @@ export const AddFirstYearForm = ({ open, onClose, onSubmit }) => {
         <DialogActions>
           <Button onClick={onClose}>Cancel</Button>
           <Button type="submit" variant="contained" disabled={isSubmitting}>
-            {isSubmitting ? "Saving..." : "Save Student"}
+            {isSubmitting ? "Updating..." : "Update Student"}
           </Button>
         </DialogActions>
       </form>
