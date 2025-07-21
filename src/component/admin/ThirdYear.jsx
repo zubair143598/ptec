@@ -20,7 +20,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { AddThirdYearForm } from "./AddThirdYearForm";
 import { EditThirdYearForm } from "./EditThirdYearForm";
-import {generateStudentCertificate} from "@/utils/downloadCertificate"
+import { generateStudentCertificate } from "@/utils/downloadCertificate";
 
 const fetchStudents = async () => {
   const { data } = await axios.get("/api/third-year");
@@ -30,7 +30,7 @@ const fetchStudents = async () => {
 const createStudent = async (studentData) => {
   const { data } = await axios.post("/api/third-year", studentData, {
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   });
   return data;
@@ -79,9 +79,9 @@ const ThirdYear = () => {
       setEditFormOpen(false);
     },
     onError: (error) => {
-    console.error("Create error:", error);
-    // You might want to show this error to the user
-  }
+      console.error("Create error:", error);
+      // You might want to show this error to the user
+    },
   });
 
   const handleEditClick = (student) => {
@@ -133,6 +133,15 @@ const ThirdYear = () => {
       width: 130,
     },
     { field: "totalObtained", headerName: "Total Obt", width: 120 },
+    { field: "grandTotalMarks", headerName: "Grand Total", width: 120 },
+    { field: "grandObtainedMarks", headerName: "Grand Obt", width: 120 },
+    {
+        field: "percentage",
+        headerName: "Percentage (%)",
+        width: 140,
+        type: "number",
+      },
+    { field: "grade", headerName: "Grade", width: 100 },
     {
       field: "actions",
       headerName: "Actions",
@@ -151,7 +160,9 @@ const ThirdYear = () => {
             variant="outlined"
             color="error"
             size="small"
-            onClick={() => deleteMutation.mutate(params.row._id || params.row.id)}
+            onClick={() =>
+              deleteMutation.mutate(params.row._id || params.row.id)
+            }
           >
             Delete
           </Button>

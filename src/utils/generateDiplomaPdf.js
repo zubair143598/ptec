@@ -19,19 +19,21 @@ export async function generateDiplomaPdf(student) {
   const black    = rgb(0, 0, 0);
 
   /* 3. write fields — adjust x/y until they line up exactly with your design */
-  page.drawText(String(student.rollNo),       { x:  93, y: 540, size: size12, font, color: black });
-  page.drawText(student.session,              { x: 93, y: 525, size: size12, font, color: black });
-  page.drawText(student.name,                 { x: 230, y: 398, size: size12, font, color: black });
-  page.drawText(student.fatherName,           { x: 585, y: 398, size: size12, font, color: black });
-  page.drawText(student.registrationNumber,   { x: 185, y: 470, size: size12, font, color: black });
-  page.drawText(student.certificateName,      { x: 120, y: 430, size: size12, font, color: black });
-  page.drawText(student.conducted,            { x: 120, y: 410, size: size12, font, color: black });
-  page.drawText(String(student.theoryMarks),  { x: 120, y: 390, size: size12, font, color: black });
-  page.drawText(String(student.practicalMarks),{x: 210, y: 390, size: size12, font, color: black });
-  page.drawText(String(student.obtainedMarks),{ x: 310, y: 390, size: size12, font, color: black });
+  page.drawText(String(student.rollNo),       { x:  95, y: 540, size: size12, font, color: black });
+  page.drawText(student.session,              { x: 95, y: 525, size: size12, font, color: black });
+  page.drawText(student.name,                 { x: 230, y: 397.7, size: size12, font, color: black });
+  page.drawText(student.fatherName,           { x: 585, y: 397.7, size: size12, font, color: black });
+  page.drawText(student.registrationNumber,   { x: 208, y: 379.5, size: size12, font, color: black });
+  page.drawText(student.institute,            { x: 520, y: 380, size: size12, font, color: black });
+  page.drawText(student.duration,             { x: 220, y: 340, size: size12, font, color: black });
+  page.drawText(student.certificateName,      { x: 270, y: 320, size: size12, font, color: black });
+  page.drawText(student.conducted,            { x: 590, y: 300, size: size12, font, color: black });
+  page.drawText(String(student.theoryMarks),  { x: 530, y: 270, size: size12, font, color: black });
+  page.drawText(String(student.practicalMarks),{x: 580, y: 250, size: size12, font, color: black });
+  page.drawText(String(student.obtainedMarks),{ x: 310, y: 225, size: size12, font, color: black });
+  page.drawText(student.certificateIssue,     { x: 520, y: 190, size: size12, font, color: black });
   page.drawText(String(student.percentage)+"%",{ x: 120, y: 370, size: size12, font, color: black });
   page.drawText(student.grade,                { x: 210, y: 370, size: size12, font, color: black });
-  page.drawText(student.certificateIssue,     { x: 310, y: 370, size: size12, font, color: black });
 
   /* 4. return bytes */
   return await pdfDoc.save();

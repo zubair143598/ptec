@@ -1,11 +1,11 @@
-import { z } from 'zod';
+import { z } from "zod";
 
 export const courseSchema = z.object({
   courseName: z.string().min(1, "Course name is required"),
   totalTheory: z.number().min(0, "Must be 0 or greater"),
   totalPractical: z.number().min(0, "Must be 0 or greater"),
   obtainedTheory: z.number().min(0, "Must be 0 or greater"),
-  obtainedPractical: z.number().min(0, "Must be 0 or greater")
+  obtainedPractical: z.number().min(0, "Must be 0 or greater"),
 });
 
 export const thirdYearFormSchema = z.object({
@@ -15,6 +15,8 @@ export const thirdYearFormSchema = z.object({
   institute: z.string().min(1, "Institute is required"),
   rollNo: z.string().min(1, "Roll No is required"),
   registrationNo: z.string().min(1, "Registration No is required"),
-  year: z.literal('3rd Year'),
+  year: z.literal("3rd Year"),
+  grandTotalMarks: z.number().min(1, "Required"),
+  grandObtainedMarks: z.number().min(0, "Required"),
   courses: z.array(courseSchema).min(1, "At least one course is required"),
 });
