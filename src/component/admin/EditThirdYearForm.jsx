@@ -39,6 +39,8 @@ export const EditThirdYearForm = ({
       institute: studentData?.institute || "",
       rollNo: studentData?.rollNo || "",
       registrationNo: studentData?.registrationNo || "",
+      grandTotalMarks: studentData?.grandTotalMarks || "",
+        grandObtainedMarks: studentData?.grandObtainedMarks || "",
       year: "3rd Year",
       courses:
         studentData?.courses?.length > 0
@@ -70,6 +72,8 @@ export const EditThirdYearForm = ({
         rollNo: studentData?.rollNo,
         registrationNo: studentData?.registrationNo,
         year: "3rd Year",
+        grandTotalMarks: studentData?.grandTotalMarks,
+        grandObtainedMarks: studentData?.grandObtainedMarks,
         courses: studentData.courses,
       });
     }
@@ -141,6 +145,24 @@ export const EditThirdYearForm = ({
               fullWidth
               margin="normal"
               required
+            />
+            <TextField
+              {...register("grandTotalMarks", { valueAsNumber: true })}
+              label="Grand Total Marks"
+              type="number"
+              error={!!errors.grandTotalMarks}
+              helperText={errors.grandTotalMarks?.message}
+              fullWidth
+              margin="normal"
+            />
+            <TextField
+              {...register("grandObtainedMarks", { valueAsNumber: true })}
+              label="Grand Obtained Marks"
+              type="number"
+              error={!!errors.grandObtainedMarks}
+              helperText={errors.grandObtainedMarks?.message}
+              fullWidth
+              margin="normal"
             />
             <input type="hidden" {...register("year")} value="3rd Year" />
           </Box>

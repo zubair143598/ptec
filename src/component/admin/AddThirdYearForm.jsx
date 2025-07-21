@@ -51,16 +51,16 @@ export const AddThirdYearForm = ({ open, onClose, onSubmit }) => {
     name: "courses",
   });
 
-const handleFormSubmit = async (data) => {
-  console.log("Submitting:", JSON.stringify(data, null, 2));
-  try {
-    await onSubmit(data);
-    reset();
-    onClose();
-  } catch (error) {
-    console.log("Submission error:", error.response?.data);
-  }
-};
+  const handleFormSubmit = async (data) => {
+    console.log("Submitting:", JSON.stringify(data, null, 2));
+    try {
+      await onSubmit(data);
+      reset();
+      onClose();
+    } catch (error) {
+      console.log("Submission error:", error.response?.data);
+    }
+  };
 
   return (
     <Dialog open={open} onClose={onClose} maxWidth="md" fullWidth>
@@ -105,7 +105,7 @@ const handleFormSubmit = async (data) => {
               fullWidth
               margin="normal"
             />
-            
+
             <TextField
               {...register("rollNo")}
               label="Roll No"
@@ -123,6 +123,24 @@ const handleFormSubmit = async (data) => {
               fullWidth
               margin="normal"
               required
+            />
+            <TextField
+              {...register("grandTotalMarks", { valueAsNumber: true })}
+              label="Grand Total Marks"
+              type="number"
+              error={!!errors.grandTotalMarks}
+              helperText={errors.grandTotalMarks?.message}
+              fullWidth
+              margin="normal"
+            />
+            <TextField
+              {...register("grandObtainedMarks", { valueAsNumber: true })}
+              label="Grand Obtained Marks"
+              type="number"
+              error={!!errors.grandObtainedMarks}
+              helperText={errors.grandObtainedMarks?.message}
+              fullWidth
+              margin="normal"
             />
             <input type="hidden" {...register("year")} value="3rd Year" />
           </Box>
