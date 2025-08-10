@@ -1,14 +1,21 @@
-import React from 'react'
-import Hero from '@/component/verification/Hero';
-import Verification from '../../component/verification/Verification';
+"use client";
+import React from "react";
+import dynamic from "next/dynamic";
+import Hero from "@/component/verification/Hero";
 
-const page = () => {
+// Dynamically import Verification so it only runs on client
+const VerificationForm = dynamic(
+  () => import("@/component/verification/Verification"),
+  { ssr: false }
+);
+
+const Page = () => {
   return (
     <div>
-        <Hero />
-        <Verification />
+      <Hero />
+      <VerificationForm />
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default Page;
