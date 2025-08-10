@@ -98,7 +98,7 @@
           <div className="max-w-[600px] mt-6 mx-auto">
             <div className="w-[340px] mx-auto my-4">
 
-            <Image src="/logo.png" alt="Logo" layout="responsive" width={150} height={50} className="mb-4" />
+            <Image src="/newlogo.png" alt="Logo" layout="responsive" width={150} height={50} className="mb-4" />
             </div>
             <div className="border border-gray-300 border-t-0">
               <h3 className="bg-[#1c4a7e] text-center text-[22px] font-bold py-4 mb-4 text-white">Approved Result Details</h3>

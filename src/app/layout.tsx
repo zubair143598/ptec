@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "TRades | PTEC",
+  title: "TRades | PSDEC",
   description: "",
 };
 

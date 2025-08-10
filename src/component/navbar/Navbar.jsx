@@ -27,7 +27,7 @@ const Navbar = () => {
         <div className="py-[24px] flex justify-center">
           <Link href="/">
             <Image
-              src="/logo.png"
+              src="/newlogo.png"
               width={300}
               height={149}
               alt="Navbar - Logo"
