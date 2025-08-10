@@ -22,6 +22,8 @@ const DiplomaCertificates = () => {
     queryFn: async () => {
       const res = await axios.get("/api/diploma-certificate");
       const response = res.data;
+      console.log("Fetched Diploma Certificates:", response);
+      
       if (response.success) {
         return response.data.map((item, index) => ({
           id: item._id,

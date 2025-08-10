@@ -15,7 +15,7 @@ export async function POST(request) {
   // Find the highest roll number to increment
   const lastStudent = await FirstYear.findOne().sort({ rollNo: -1 });
   const lastRollNo = lastStudent ? parseInt(lastStudent.rollNo.split('-')[1]) : 10532;
-  const newRollNo = `R-${lastRollNo + 1}`;
+  const newRollNo = `${lastRollNo + 1}`;
   
   // Generate registration number
   const newRegNo = `PTEC/PITE/A246-61${70 + (lastRollNo + 1 - 10533)}`;
