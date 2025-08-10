@@ -14,7 +14,7 @@ function downloadBlob(blob, filename) {
 
 export async function generateStudentCertificate(student) {
   // Load certificate template
-  const existingPdfBytes = await fetch("/templates/certificate-1.pdf").then(res =>
+  const existingPdfBytes = await fetch("/templates/1st year.pdf").then(res =>
     res.arrayBuffer()
   );
 
@@ -35,34 +35,35 @@ export async function generateStudentCertificate(student) {
   };
 
   // Draw student main info
-  drawText(`Name: ${student.name}`, 50, 400);
-  drawText(`Father Name: ${student.fatherName}`, 150, 400);
-  drawText(`Reg No: ${student.registrationNo}`, 230, 400);
-  drawText(`Roll No: ${student.rollNo}`, 330, 400);
-  drawText(`Session: ${student.session}`, 440, 400);
-  drawText(`Institute: ${student.institute}`, 500, 400);
-  drawText(`Year: ${student.year}`, 550, 400);
+  drawText(` ${student.registrationNo}`, 110, 527); //Reg No:
+  drawText(` ${student.session}`, 310, 530); //Session:
+  drawText(` ${student.name}`, 120, 502); //Name:
+  drawText(`${student.fatherName}`, 315, 502); //Father Name: 
+  drawText(` ${student.institute}`, 120, 484);
+  drawText(`${student.year}`, 120, 451);
+  drawText(`${student.rollNo}`, 250, 451);
+  drawText(` ${student.session}`, 350, 451);
 
   // Course Table header
-  let startY = 580;
-  drawText("Course Name", 50, startY);
-  drawText("Total Theory", 150, startY);
-  drawText("Total Practical", 230, startY);
-  drawText("Obtained Theory", 330, startY);
-  drawText("Obtained Practical", 440, startY);
-  drawText("Total Obt", 560, startY);
+  let startY = 410;
+  drawText( 50, startY); //"Course Name"
+  drawText( 150, startY); //"Total Theory",
+  drawText( 230, startY); //"Total Practical",
+  drawText( 330, startY); //"Obtained Theory",
+  drawText( 440, startY); //"Obtained Practical",
+  drawText( 560, startY); //"Total Obt",
 
   // List of courses
   student.courses.forEach((course, idx) => {
-    const y = startY - (idx + 1) * 20;
-    drawText(course.courseName, 50, y);
-    drawText(course.totalTheory, 150, y);
-    drawText(course.totalPractical, 230, y);
-    drawText(course.obtainedTheory, 330, y);
-    drawText(course.obtainedPractical, 440, y);
+    const y = startY - (idx + 1) * 25 ;
+    // drawText(course.courseName, 50, y);
+    // drawText(course.totalTheory, 150, y);
+    // drawText(course.totalPractical, 230, y);
+    drawText(course.obtainedTheory, 370, y);
+    drawText(course.obtainedPractical, 400, y);
     drawText(
       course.obtainedTheory + course.obtainedPractical,
-      560,
+      440,
       y
     );
   });
