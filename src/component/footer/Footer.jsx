@@ -86,7 +86,7 @@ const Footer = () => {
         </div>
       </div>
       <div>
-        <p className=" text-center text-[#ffffffb3] mt-5 md:mt-10">Copyright © by <b>Pakistan Technical & Educational Council</b></p>
+        <p className=" text-center text-[#ffffffb3] mt-5 md:mt-10">Copyright © by <b>Pakistan Skill Development & Educational Council</b></p>
       </div>
     </div>
   );
