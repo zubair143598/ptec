@@ -59,12 +59,12 @@ export async function generateVerificationPDF(student) {
     }
 
     // Marks data (unchanged)
-    firstPage.drawText(`${student.totalMarks}`, { x: 385, y: 318, size: fontSize, font: fontNormal, color: textColor });
-    firstPage.drawText(`${student.theoryMarks}`, { x: 385, y: 290, size: fontSize, font: fontNormal, color: textColor });
-    firstPage.drawText(`${student.practicalMarks}`, { x: 385, y: 260, size: fontSize, font: fontNormal, color: textColor });
-    firstPage.drawText(`${student.obtainedMarks}`, { x: 385, y: 230, size: fontSize, font: fontNormal, color: textColor });
-    firstPage.drawText(`${student.percentage}%`, { x: 385, y: 200, size: fontSize, font: fontNormal, color: textColor });
-    firstPage.drawText(`${student.grade}`, { x: 386, y: 170, size: fontSize, font: fontNormal, color: textColor });
+    firstPage.drawText(`${student.totalMarks}`, { x: 345, y: 310, size: fontSize, font: fontNormal, color: textColor });
+    // firstPage.drawText(`${student.theoryMarks}`, { x: 385, y: 290, size: fontSize, font: fontNormal, color: textColor });
+    // firstPage.drawText(`${student.practicalMarks}`, { x: 385, y: 260, size: fontSize, font: fontNormal, color: textColor });
+    firstPage.drawText(`${student.obtainedMarks}`, { x: 345, y: 290, size: fontSize, font: fontNormal, color: textColor });
+    firstPage.drawText(`${student.percentage}%`, { x: 345, y: 250, size: fontSize, font: fontNormal, color: textColor });
+    firstPage.drawText(`${student.grade}`, { x: 347, y: 225, size: fontSize, font: fontNormal, color: textColor });
 
     // Save & download
     const pdfBytes = await pdfDoc.save();

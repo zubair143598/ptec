@@ -23,49 +23,79 @@ export async function generateStudentCertificate(student) {
   const page = pages[0];
   const { width } = page.getSize();
 
-  const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
-  const drawText = (text, x, y, size = 12) => {
+  const boldFont = await pdfDoc.embedFont(StandardFonts.HelveticaBold); 
+
+  const drawText = (text, x, y, size = 9) => {
     page.drawText(String(text), {
       x,
       y,
       size,
-      font,
+      font: boldFont,
       color: rgb(0, 0, 0),
     });
   };
 
-  // Draw student main info
-  drawText(` ${student.registrationNo}`, 110, 527); //Reg No:
-  drawText(` ${student.session}`, 310, 530); //Session:
-  drawText(` ${student.name}`, 120, 502); //Name:
-  drawText(`${student.fatherName}`, 315, 502); //Father Name: 
-  drawText(` ${student.institute}`, 120, 484);
-  drawText(`${student.year}`, 120, 451);
-  drawText(`${student.rollNo}`, 250, 451);
-  drawText(` ${student.session}`, 350, 451);
+  // ---------- NEW: formatting helpers ----------
+  const parseNumOrNull = (v) => {
+    // treat null/undefined/empty-string as "no value"
+    if (v === null || v === undefined || v === "") return null;
+    const n = Number(v);
+    return Number.isFinite(n) ? n : null;
+  };
 
-  // Course Table header
-  let startY = 410;
-  drawText( 50, startY); //"Course Name"
-  drawText( 150, startY); //"Total Theory",
-  drawText( 230, startY); //"Total Practical",
-  drawText( 330, startY); //"Obtained Theory",
-  drawText( 440, startY); //"Obtained Practical",
-  drawText( 560, startY); //"Total Obt",
+  const displayNum = (v) => {
+    // If value is exactly numeric 0 -> show '-'
+    // If value is missing -> show empty string
+    // Otherwise show the value as string
+    const n = parseNumOrNull(v);
+    if (n === null) return "";
+    return n === 0 ? "-" : String(n);
+  };
+  // ---------------------------------------------
+
+  // Draw student main info
+  drawText(` ${student.registrationNo}`, 106, 470); //Reg No:
+  drawText(` ${student.session}`, 310, 470); //Session:
+  drawText(`${student.rollNo}`, 250, 451);
+  drawText(` ${student.name}`, 150, 430); //Name:
+  drawText(`${student.fatherName}`, 150, 413); //Father Name:
+  drawText(` ${student.institute}`, 150, 396); //Institute:
+  drawText(`${student.totalTheoryObtained}`, 440, 117); 
+  drawText(` ${student.totalPracticalObtained}`, 482, 117);
+  drawText(`${student.totalObtained}`, 520, 117); 
+  // drawText(` ${student.totalPracticalObtained}`, 150, 396);
+
+  // Course Table header (fix: pass text first, then x,y)
+  // drawText("Course Name", 50, 355);
+  // drawText("Total Theory", 150, 355);
+  // drawText("Total Practical", 230, 355);
+  // drawText("Obtained Theory", 330, 355);
+  // drawText("Obtained Practical", 440, 355);
+  // drawText("Total Obt", 560, 355);
 
   // List of courses
   student.courses.forEach((course, idx) => {
-    const y = startY - (idx + 1) * 25 ;
-    // drawText(course.courseName, 50, y);
-    // drawText(course.totalTheory, 150, y);
-    // drawText(course.totalPractical, 230, y);
-    drawText(course.obtainedTheory, 370, y);
-    drawText(course.obtainedPractical, 400, y);
+    const y = 350 - (idx + 1) * 21;
+    drawText(course.courseName || "", 100, y);
+
+    // Use displayNum for each numeric field so 0 -> '-'
     drawText(
-      course.obtainedTheory + course.obtainedPractical,
-      440,
-      y
-    );
+  `${displayNum(course.totalTheory)}/${displayNum(course.totalPractical)}`,
+  370,
+  y
+);
+    drawText(displayNum(course.obtainedTheory), 440, y);
+    drawText(displayNum(course.obtainedPractical), 485, y);
+
+    // For the sum: if both obtained fields are missing -> show blank
+    const a = parseNumOrNull(course.obtainedTheory);
+    const b = parseNumOrNull(course.obtainedPractical);
+    let sumDisplay = "";
+    if (a !== null || b !== null) {
+      const sum = (a || 0) + (b || 0);
+      sumDisplay = sum === 0 ? "-" : String(sum);
+    }
+    drawText(sumDisplay, 520, y);
   });
 
   // Generate PDF
