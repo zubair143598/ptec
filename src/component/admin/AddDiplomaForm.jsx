@@ -68,6 +68,7 @@ const AddDiplomaForm = ({ open, handleClose, onAdded }) => {
               { label: "Theory Marks", name: "theoryMarks", type: "number" },
               { label: "Practical Marks", name: "practicalMarks", type: "number" },
               { label: "Issue Date", name: "certificateIssue" },
+              { label: "Serial Number", name: "serialNumber" },
             ].map(({ label, name, type }) => (
               <Grid item xs={6} key={name}>
                 <TextField

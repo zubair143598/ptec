@@ -32,8 +32,9 @@ export async function generateDiplomaPdf(student) {
   const black = rgb(0, 0, 0);
 
   // 5. Draw on page1
-  page1.drawText(String(student.rollNo),       { x: 97, y: 538, size: size12, font, color: black });
+  page1.drawText(String(student.rollNo),       { x: 97, y: 537, size: size12, font, color: black });
   page1.drawText(student.session,              { x: 103, y: 522.5, size: size12, font, color: black });
+  page1.drawText(student.serialNumber || "",         { x: 700, y: 527, size: size12, font, color: black });
   page1.drawText(student.name,                 { x: 230, y: 397.7, size: size12, font, color: black });
   page1.drawText(student.fatherName,           { x: 570, y: 397.7, size: size12, font, color: black });
   page1.drawText(student.registrationNumber,   { x: 165, y: 379, size: size12, font, color: black });

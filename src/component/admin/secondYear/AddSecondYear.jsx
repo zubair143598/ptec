@@ -2,7 +2,7 @@
 import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, useFieldArray } from "react-hook-form";
-import { studentFormSchema } from "../../types/firstYear";
+import { studentFormSchema } from "../../../types/secondYear";
 import {
   Box,
   Button,
@@ -17,7 +17,7 @@ import {
 } from "@mui/material";
 import { Add, Remove } from "@mui/icons-material";
 
-export const AddStudentForm = ({ open, onClose, onSubmit }) => {
+export const AddSecondYear = ({ open, onClose, onSubmit }) => {
  const {
     control,
     handleSubmit,
@@ -113,6 +113,24 @@ export const AddStudentForm = ({ open, onClose, onSubmit }) => {
               <option value="2nd Year">2nd Year</option>
             </TextField>
             <TextField
+  {...register('firstYearTheoryObtained', { valueAsNumber: true })}
+  label="First Year Theory Obtained"
+  type="number"
+  error={!!errors.firstYearTheoryObtained}
+  helperText={errors.firstYearTheoryObtained?.message}
+  fullWidth
+  margin="normal"
+/>
+<TextField
+  {...register('firstYearPracticalObtained', { valueAsNumber: true })}
+  label="First Year Practical Obtained"
+  type="number"
+  error={!!errors.firstYearPracticalObtained}
+  helperText={errors.firstYearPracticalObtained?.message}
+  fullWidth
+  margin="normal"
+/>
+ <TextField
               {...register("certificateName")}
               label="Certificate Name"
               error={!!errors.certificateName}

@@ -14,23 +14,37 @@ const studentSchema = new mongoose.Schema({
   name: { type: String, required: true },
   fatherName: { type: String, required: true },
   institute: { type: String, required: true },
-  year: { type: String, default: '1st Year' },
+  year: { type: String, default: '2nd Year' },
   certificateName: { type: String, required: true },
   rollNo: { type: String, required: true, unique: true },
   courses: [courseSchema],
+  // First year marks
+  firstYearTheoryObtained: { type: Number, default: 0 },
+  firstYearPracticalObtained: { type: Number, default: 0 },
+  firstYearTotalObtained: { type: Number, default: 0 },
+  // Second year marks
   totalMaxMarks: { type: Number },
   totalTheoryObtained: { type: Number },
   totalPracticalObtained: { type: Number },
-  totalObtained: { type: Number }
+  totalObtained: { type: Number },
+  // Combined marks
+  grandTotalObtained: { type: Number }
 });
 
-// Pre-save hook to calculate totals
 studentSchema.pre('save', function(next) {
-  this.totalTheoryObtained = this.courses.reduce((sum, course) => sum + course.obtainedTheory, 0);
-  this.totalPracticalObtained = this.courses.reduce((sum, course) => sum + course.obtainedPractical, 0);
+  // First year totals
+  this.firstYearTotalObtained = this.firstYearTheoryObtained + this.firstYearPracticalObtained;
+  
+  // Second year totals
+  this.totalTheoryObtained = this.courses.reduce((sum, course) => sum + course.obtainedTheory, 0) + this.firstYearTheoryObtained;
+  this.totalPracticalObtained = this.courses.reduce((sum, course) => sum + course.obtainedPractical, 0) + this.firstYearPracticalObtained;
   this.totalObtained = this.totalTheoryObtained + this.totalPracticalObtained;
   this.totalMaxMarks = this.courses.reduce((sum, course) => sum + course.totalTheory + course.totalPractical, 0);
+  
+  // Grand total (first year + second year)
+  this.grandTotalObtained = this.firstYearTotalObtained + this.totalObtained;
+  
   next();
 });
 
-export default mongoose.models.FirstYear || mongoose.model('FirstYear', studentSchema);
+export default mongoose.models.SecondYear || mongoose.model('SecondYear', studentSchema);
