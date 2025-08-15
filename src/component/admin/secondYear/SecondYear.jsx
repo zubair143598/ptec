@@ -20,7 +20,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { AddSecondYear } from "./AddSecondYear";
 import { EditSecondYear } from "./EditSecondYear";
-import {generateStudentCertificate} from "../../../utils/SecondYear"
+import {generateStudentCertificate} from "@/utils/secondYear"
 
 
 const fetchStudents = async () => {
