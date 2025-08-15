@@ -51,7 +51,7 @@ export async function generateStudentCertificate(student) {
     if (n === null) return "";
     return n === 0 ? "-" : String(n);
   };
-  // ---------------------------------------------
+  // -------------------------------------------
 const certFontSize = 12; // or bigger if you want
 const certText = student.certificateName || "";
 const certTextWidth = boldFont.widthOfTextAtSize(certText, certFontSize);
@@ -64,6 +64,7 @@ page.drawText(certText, {
   font: boldFont,
   color: rgb(0, 0, 0),
 });
+
   drawText(` ${student.registrationNo}`, 106, 470); //Reg No:
   drawText(` ${student.session}`, 310, 470); //Session:
   drawText(`${student.rollNo}`, 250, 451);
