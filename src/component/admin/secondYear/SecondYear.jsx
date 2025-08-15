@@ -18,33 +18,34 @@ import {
 import { DataGrid } from "@mui/x-data-grid";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import { AddStudentForm } from "./AddStudentForm";
-import { EditStudentForm } from "./EditStudentForm";
-import {generateStudentCertificate} from "@/utils/downloadCertificate"
+import { AddSecondYear } from "./AddSecondYear";
+import { EditSecondYear } from "./EditSecondYear";
+import {generateStudentCertificate} from "../../../utils/SecondYear"
+
 
 const fetchStudents = async () => {
-  const { data } = await axios.get("/api/first-year");
+  const { data } = await axios.get("/api/second-year");  // Changed endpoint
   return data;
 };
 
 const createStudent = async (studentData) => {
-  const { data } = await axios.post("/api/first-year", studentData);
+  const { data } = await axios.post("/api/second-year", studentData);  // Changed endpoint
   return data;
 };
 
 const updateStudent = async ({ id, ...studentData }) => {
-  const { data } = await axios.put("/api/first-year", { id, ...studentData });
+  const { data } = await axios.put("/api/second-year", { id, ...studentData });  // Changed endpoint
   return data;
 };
 
 const deleteStudent = async (id) => {
-  const { data } = await axios.delete("/api/first-year", {
+  const { data } = await axios.delete("/api/second-year", {
     data: { id },
   });
   return data;
 };
 
-const FirstYear = () => {
+const SecondYear = () => {
   const [openRowId, setOpenRowId] = useState(null);
   const [formOpen, setFormOpen] = useState(false);
   const [editFormOpen, setEditFormOpen] = useState(false);
@@ -56,14 +57,14 @@ const FirstYear = () => {
     isLoading,
     error,
   } = useQuery({
-    queryKey: ["firstYearStudents"],
+    queryKey: ["secondYearStudents"],
     queryFn: fetchStudents,
   });
 
   const createMutation = useMutation({
     mutationFn: createStudent,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["firstYearStudents"] });
+      queryClient.invalidateQueries({ queryKey: ["secondYearStudents"] });
       setFormOpen(false);
     },
   });
@@ -71,7 +72,7 @@ const FirstYear = () => {
   const updateMutation = useMutation({
     mutationFn: updateStudent,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["firstYearStudents"] });
+      queryClient.invalidateQueries({ queryKey: ["secondYearStudents"] });
       setEditFormOpen(false);
     },
   });
@@ -84,7 +85,7 @@ const FirstYear = () => {
   const deleteMutation = useMutation({
   mutationFn: deleteStudent,
   onSuccess: () => {
-    queryClient.invalidateQueries({ queryKey: ["firstYearStudents"] });
+    queryClient.invalidateQueries({ queryKey: ["secondYearStudents"] });
   },
 });
 
@@ -120,7 +121,21 @@ const FirstYear = () => {
     { field: "rollNo", headerName: "Roll No", width: 120 },
     { field: "totalMaxMarks", headerName: "Max Marks", width: 120 },
     { field: "totalTheoryObtained", headerName: "Theory Obt", width: 120 },
-    { field: "certificateName", headerName: "Certificate Name", width: 180 },
+    { 
+    field: 'firstYearTheoryObtained', 
+    headerName: '1st Year Theory', 
+    width: 120 
+  },
+  { 
+    field: 'firstYearPracticalObtained', 
+    headerName: '1st Year Practical', 
+    width: 120 
+  },
+  { 
+    field: 'firstYearTotalObtained', 
+    headerName: '1st Year Total', 
+    width: 120 
+  },
     {
       field: "totalPracticalObtained",
       headerName: "Prac/Viva Obt",
@@ -240,13 +255,13 @@ const FirstYear = () => {
         );
       })}
 
-      <AddStudentForm
+      <AddSecondYear
         open={formOpen}
         onClose={() => setFormOpen(false)}
         onSubmit={createMutation.mutateAsync}
       />
 
-      <EditStudentForm
+      <EditSecondYear
         open={editFormOpen}
         onClose={() => setEditFormOpen(false)}
         onSubmit={(data) =>
@@ -261,4 +276,4 @@ const FirstYear = () => {
   );
 };
 
-export default FirstYear;
+export default SecondYear;

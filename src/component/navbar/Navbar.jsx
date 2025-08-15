@@ -34,7 +34,7 @@ const Navbar = () => {
             />{" "}
           </Link>
         </div>
-    <nav className="bg-[#056A58] shadow-md w-full z-50 ">
+    <nav className="bg-[#1C4A7E] shadow-md w-full z-50 ">
       
       <div className="container mx-auto md:px-4 px-2 flex justify-center items-center">
         {/* Desktop Links */}
@@ -60,7 +60,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-          <div className="lg:hidden px-4 pb-4 bg-[#056A58] shadow-md">
+          <div className="lg:hidden px-4 pb-4 bg-[#1C4A7E] shadow-md">
           {navLinks.map((link) => (
               <Link
               key={link.name}

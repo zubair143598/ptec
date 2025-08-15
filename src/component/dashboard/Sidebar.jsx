@@ -37,6 +37,17 @@ const Sidebar = () => {
         </li>
         <li>
           <Link
+            href="/admin/second-year"
+            className={`hover:text-yellow-400 px-2 py-1 rounded flex gap-3 ${
+              pathName === "/admin/second-year" ? "bg-[#0A7FC3]" : ""
+            }`}
+          >
+            <IoMdContacts size={18} className="mt-[2px]" />
+            <span className="md:block hidden">second Year</span>
+          </Link>
+        </li>
+        <li>
+          <Link
             href="/admin/third-year"
             className={`hover:text-yellow-400 px-2 py-1 rounded flex gap-3 ${
               pathName === "/admin/third-year" ? "bg-[#0A7FC3]" : ""

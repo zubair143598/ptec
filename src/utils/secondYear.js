@@ -14,7 +14,7 @@ function downloadBlob(blob, filename) {
 
 export async function generateStudentCertificate(student) {
   // Load certificate template
-  const existingPdfBytes = await fetch("/templates/1st year.pdf").then(res =>
+  const existingPdfBytes = await fetch("/templates/2nd year.pdf").then(res =>
     res.arrayBuffer()
   );
 
@@ -52,18 +52,20 @@ export async function generateStudentCertificate(student) {
     return n === 0 ? "-" : String(n);
   };
   // ---------------------------------------------
-const certFontSize = 12; // or bigger if you want
-const certText = student.certificateName || "";
-const certTextWidth = boldFont.widthOfTextAtSize(certText, certFontSize);
-const certX = (width - certTextWidth) / 2;
 
-page.drawText(certText, {
-  x: certX,
-  y: 496,
-  size: certFontSize,
-  font: boldFont,
-  color: rgb(0, 0, 0),
-});
+  // Draw student main info
+  const certFontSize = 12; // or bigger if you want
+  const certText = student.certificateName || "";
+  const certTextWidth = boldFont.widthOfTextAtSize(certText, certFontSize);
+  const certX = (width - certTextWidth) / 2;
+  
+  page.drawText(certText, {
+    x: certX,
+    y: 496,
+    size: certFontSize,
+    font: boldFont,
+    color: rgb(0, 0, 0),
+  });
   drawText(` ${student.registrationNo}`, 106, 470); //Reg No:
   drawText(` ${student.session}`, 310, 470); //Session:
   drawText(`${student.rollNo}`, 250, 451);
@@ -73,6 +75,9 @@ page.drawText(certText, {
   drawText(`${student.totalTheoryObtained}`, 440, 117); 
   drawText(` ${student.totalPracticalObtained}`, 482, 117);
   drawText(`${student.totalObtained}`, 520, 117); 
+  drawText(`${student.firstYearPracticalObtained}`, 440, 330); 
+  drawText(`${student.firstYearTheoryObtained}`, 485, 330); 
+  drawText(`${student.firstYearTotalObtained}`, 520, 330); 
   // drawText(` ${student.totalPracticalObtained}`, 150, 396);
 
   // Course Table header (fix: pass text first, then x,y)
@@ -85,7 +90,7 @@ page.drawText(certText, {
 
   // List of courses
   student.courses.forEach((course, idx) => {
-    const y = 350 - (idx + 1) * 21;
+    const y = 330 - (idx + 1) * 21;
     drawText(course.courseName || "", 100, y);
 
     // Use displayNum for each numeric field so 0 -> '-'

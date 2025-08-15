@@ -15,7 +15,7 @@ const Welcome = () => {
               Welcome to Pakistan Technical & Educational Council Islamabad
             </h2>
             <p className="mb-4 text-[14px] md:text-[18px]">
-              The Pakistan Technical & Educational Council (PTEC) has been
+              The Pakistan Skill Development & Educational Council (PSDEC) has been
               constituted as statutory body under society registration Act (XXi
               of 1860), by the Government of Pakistan under National Training
               Ordinance – 1980 amended Ordinance – 2002 on the initiative of
@@ -36,9 +36,9 @@ const Welcome = () => {
             </p>
             <h3 className="md:text-[30px] text-[22px] mt-8 mb-2">Working Mechanism</h3>
             <p className="mb-4 text-[14px] md:text-[18px]">
-              PTEC design and develop training courses in accordance with
+              PSDEC design and develop training courses in accordance with
               emerging needs with the involvement of experts from relevant
-              industry. PTEC does not have its own training institutes but
+              industry. PSDEC does not have its own training institutes but
               collaborates and works in partnership with industry, training
               institutes / colleges and other organizations to arrange training
               which is:
@@ -75,7 +75,7 @@ const Welcome = () => {
               </div>
               <div className="px-4">
                 <h4 className="mt-12 mb-4 md:text-[26px] text-[18px] font-medium">
-                  Jurisdiction of PTEC
+                  Jurisdiction of PSDEC
                 </h4>
                 <p className="mb-4 text-[14px] md:text-[18px]">
                   1. Khyber Pakhtunkhwa <br />

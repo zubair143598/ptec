@@ -102,6 +102,14 @@ export const EditStudentForm = ({
               margin="normal"
             />
             <TextField
+            {...register('certificateName')}
+              label="Certificate Name"
+              error={!!errors.certificateName}
+              helperText={errors.certificateName?.message}
+              fullWidth
+              margin="normal"
+            />
+            <TextField
               {...register('institute')}
               label="Institute"
               error={!!errors.institute}
