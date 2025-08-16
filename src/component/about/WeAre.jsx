@@ -9,7 +9,7 @@ const WeAre = () => {
           Who We Are ?
         </h3>
         <p className="text-[14px] md:text-[18px] text-[#666666] mb-4">
-          PTEC has been constituted by the Government of Pakistan under National
+          PSDEC has been constituted by the Government of Pakistan under National
           Training Ordinance 1980 amended Ordinance 2002 on the initiative of
           World Bank, ILO and Employers’ Federation of Pakistan, to make the
           Technical & Vocational Training Programs flexible, demand driven and
@@ -27,7 +27,7 @@ const WeAre = () => {
           to prepare competent and trained workforce capable to respond to the
           fast changing needs of the 21st century and to contribute in the
           Economic Development of Pakistan. <br />
-          The PTEC from its inception (1995) has been very successful in
+          The PSDEC from its inception (1995) has been very successful in
           catering to the needs of Human Capital Development by arranging need
           based training programs and organizing workshops / seminars on
           promotion of Technical Vocational Education & Training,
@@ -81,7 +81,7 @@ const WeAre = () => {
           Achievements
         </h3>
         <div className="w-full">
-          <Image src="/aboutChart.jpg" alt="PTEC - About Chart" width={100} height={100} layout="responsive" />
+          <Image src="/aboutChart.jpg" alt=" - About Chart" width={100} height={100} layout="responsive" />
         </div>
       </div>
     </div>

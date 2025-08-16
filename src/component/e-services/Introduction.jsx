@@ -28,7 +28,7 @@ const Introduction = () => {
       </div>
       <div>
         <h3 className="md:text-[34px] text-[24px] font-[500] mb-2">
-          The Resources On PTEC Website
+          The Resources On PSDEC Website
         </h3>
         <p className="text-[14px] md:text-[18px] text-[#666666] mb-4">
           The tab ‘Resource Material’ on the website gives an option to look for

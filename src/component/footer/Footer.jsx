@@ -13,7 +13,7 @@ const Footer = () => {
           <h6 className="mb-5 md:mb-10 text-[24px]">Get in touch</h6>
           <ul className=" space-y-2">
             <li className="text-[16px]  mb-7">
-              <Link className="flex gap-2" href="mailto:info@ptec.edu.pk"><MdEmail className="" size={22} />info@psdec.edu.pk</Link>
+              <Link className="flex gap-2" href="mailto:info@PSDEC.edu.pk"><MdEmail className="" size={22} />info@psdec.edu.pk</Link>
             </li>
             <li className="text-[16px] ">
               <h6 className="mb-3 md:mb-6 text-[24px]">Connect With Us</h6>
