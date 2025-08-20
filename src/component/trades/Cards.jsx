@@ -146,7 +146,7 @@ const Cards = () => {
               height:"100%",
               transition: "background-color 0.3s ease",
               "&:hover": {
-                backgroundColor: "#056a58",
+                backgroundColor: "#1C4A7E",
                 color:"white"
               },
             }}
@@ -178,7 +178,7 @@ const Cards = () => {
                     fontSize: "12px",
                     padding: "4px 10px",
                     textAlign: "center",
-                    backgroundColor: "#28a745",
+                    backgroundColor: "#1C4A7E",
                     borderRadius: "15px",
                     color: "white",
                     fontWeight: 700,

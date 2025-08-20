@@ -6,7 +6,7 @@ const Welcome = () => {
       {/* Background image */}
       <div className='bg-[url("/welcombg.jpg")] bg-cover bg-center text-white relative z-0 bg-fixed'>
         {/* Overlay with color and opacity */}
-        <div className="absolute inset-0 bg-[#05696C] opacity-90 z-10"></div>
+        <div className="absolute inset-0 bg-[#1C4A7C] opacity-90 z-10"></div>
 
         {/* Content on top of overlay */}
         <div className="relative z-20 max-w-[1140px] px-4 py-28 mx-auto">
