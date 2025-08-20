@@ -15,7 +15,7 @@ const page = () => {
     <div>
       {/* Hero Section */}
       <div className='bg-[url("/aboutHero.jpg")] bg-cover bg-center text-white relative z-0 bg-fixed h-[300px]'>
-        <div className="absolute inset-0 bg-[#05696C] opacity-50 z-10"></div>
+        <div className="absolute inset-0 bg-[#1C4A7C] opacity-50 z-10"></div>
         <div className="relative z-30 flex justify-center items-center h-full">
           <div>
             <h1 className="mb-3 text-[44px] font-[900]">Downloads</h1>
@@ -32,7 +32,7 @@ const page = () => {
         <div className="overflow-x-auto">
           <table className="w-full border-collapse border-gray-200 border">
             <thead>
-              <tr className="bg-[#006B56] text-white text-left">
+              <tr className="bg-[#1C4A7C] text-white text-left">
                 <th className="px-4 py-3 font-semibold w-[50px]"></th>
                 <th className=" py-3 text-center font-bold text-[18px]">Download PDF's</th>
               </tr>
@@ -45,7 +45,7 @@ const page = () => {
                     <a
                       href={item.formLink}
                       download
-                      className="text-[#006B56] hover:underline"
+                      className="text-[#1C4A7C] hover:underline"
                     >
                       {item.title}
                     </a>

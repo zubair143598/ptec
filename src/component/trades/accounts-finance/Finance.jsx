@@ -44,7 +44,7 @@ const Finance = () => {
       <div className="overflow-x-auto">
         <table className="w-full border-collapse border-gray-200 border">
           <thead>
-            <tr className="bg-[#006B56] text-white text-left">
+            <tr className="bg-[#1C4A7E] text-white text-left">
               <th className="px-4 py-3 font-semibold w-[50px]"></th>
               <th className="px-4 py-3 font-semibold">ACCOUNTS AND FINANCE</th>
             </tr>

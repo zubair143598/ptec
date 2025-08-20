@@ -51,10 +51,17 @@ export async function generateDiplomaPdf(student) {
   page1.drawText(student.grade,                { x: 645, y: 183, size: size12, font, color: black });
 
   // 6. Draw on page2
-  const verificationUrl = `https://psdec.vercel.app/verification?q=${student.rollNo}`;
+// Build verification URL
+const verificationUrl = `https://psdec.com/verification?q=${student.rollNo}`;
 
-// Generate QR as Data URL
-const qrDataUrl = await QRCode.toDataURL(verificationUrl, { margin: 1 });
+// Generate QR as Data URL with custom color
+const qrDataUrl = await QRCode.toDataURL(verificationUrl, { 
+  margin: 1,
+  color: {
+    dark: "#1C4A7E",   // QR dots color
+    light: "#FFFFFF00" // background color (transparent), or use "#FFFFFF" for white
+  }
+});
 
 // Convert to bytes and embed
 const qrImageBytes = Buffer.from(qrDataUrl.split(",")[1], "base64");
@@ -64,6 +71,8 @@ const qrImage = await finalPdf.embedPng(qrImageBytes);
 const qrSize = 80; // px in PDF points
 const qrX = 665;   // adjust to place above text
 const qrY = 470;   // slightly higher than your text y=427
+
+// Draw QR on PDF
 page2.drawImage(qrImage, {
   x: qrX,
   y: qrY,
@@ -71,7 +80,7 @@ page2.drawImage(qrImage, {
   height: qrSize,
 });
 
-  page2.drawText(String("https://psdec.vercel.app"),  { x: 665, y: 427, size: 12, font, color: black });
+  page2.drawText(String("https://psdec.com"),  { x: 665, y: 427, size: 12, font, color: black });
   page2.drawText(String(student.rollNo),   { x: 723, y: 413, size: size12, font, color: black });
   page2.drawText(String(student.rollNo),   { x: 122, y: 65, size: size12, font, color: black });
 

@@ -29,7 +29,7 @@ const Question = () => {
       {/* Background image */}
       <div className='bg-[url("/question.jpg")] bg-cover bg-center text-white relative z-0 bg-fixed bg-no-repeat'>
         {/* Overlay with color and opacity */}
-        <div className="absolute inset-0 bg-[#05696C] opacity-70 z-10"></div>
+        <div className="absolute inset-0 bg-[#1C4A7C] opacity-70 z-10"></div>
         <div className="md:w-[60%] w-[90%] mx-auto md:p-12 py-10 z-30 relative">
             <div>
               <h3 className="text-[24px] md:text-[32px] font-semibold mb-4">Question About Course Trade</h3>
@@ -67,7 +67,7 @@ const Question = () => {
             </div>
             <div  className="w-[80%] mx-auto mt-4">
 
-            <button className="w-full p-4 bg-[#056A58] rounded-full text-[18px]" type="submit">Request a Quote</button>
+            <button className="w-full p-4 bg-[#1C4A7E] rounded-full text-[18px]" type="submit">Request a Quote</button>
             </div>
           </form>
         </div>

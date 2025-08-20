@@ -112,7 +112,7 @@ const ApplyForm = () => {
         <div className="md:col-span-2">
           <button
             type="submit"
-            className="w-full bg-[#05696C] hover:bg-[#044f50] text-white font-semibold py-3 rounded-md"
+            className="w-full bg-[#1C4A7C] hover:bg-[#08294c] text-white font-semibold py-3 rounded-md"
           >
             Submit
           </button>
