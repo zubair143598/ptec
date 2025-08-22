@@ -92,6 +92,7 @@ page2.drawImage(qrImage, {
 });
   page2.drawText(String(student.rollNo),   { x: 132, y: 130, size: size12, font, color: black });
 
+
   // 7. Save final PDF with both pages
   return await finalPdf.save();
 }
