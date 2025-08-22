@@ -80,9 +80,18 @@ page2.drawImage(qrImage, {
   height: qrSize,
 });
 
+  page2.drawText(String("Scan QR Code to verify"),  { x: 665, y: 455, size: 12, font, color: black });
+  page2.drawText(String("For Online Verification"),  { x: 665, y: 441, size: 12, font, color: black });
   page2.drawText(String("https://psdec.com"),  { x: 665, y: 427, size: 12, font, color: black });
-  page2.drawText(String(student.rollNo),   { x: 723, y: 413, size: size12, font, color: black });
-  page2.drawText(String(student.rollNo),   { x: 122, y: 65, size: size12, font, color: black });
+  page2.drawText(`code No : ${student.rollNo}`, {
+  x: 665,
+  y: 411,
+  size: 12,
+  font,
+  color: rgb(0.11, 0.29, 0.49), // "#1C4A7E" in pdf-lib requires rgb()
+});
+  page2.drawText(String(student.rollNo),   { x: 132, y: 130, size: size12, font, color: black });
+
 
   // 7. Save final PDF with both pages
   return await finalPdf.save();
