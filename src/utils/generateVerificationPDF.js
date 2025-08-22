@@ -1,4 +1,5 @@
 import { PDFDocument, rgb, StandardFonts } from "pdf-lib";
+import QRCode from "qrcode";
 
 export async function generateVerificationPDF(student) {
   try {
@@ -36,7 +37,7 @@ export async function generateVerificationPDF(student) {
 
     // Draw the paragraph with wrapping (manual wrapping since pdf-lib has no auto HTML layout)
     let x = 53;
-    let y = 520;
+    let y = 465;
     const maxWidth = 500;
 
     for (const part of parts) {
@@ -45,7 +46,7 @@ export async function generateVerificationPDF(student) {
         const wordWidth = part.font.widthOfTextAtSize(word + " ", fontSize);
         if (x + wordWidth > 50 + maxWidth) { // wrap
       x = 50;
-      y -= fontSize + 4 + 8; // <-- increased line height
+      y -= fontSize + 4 + 4; // <-- increased line height
     }
         firstPage.drawText(word + " ", {
           x,
@@ -59,12 +60,49 @@ export async function generateVerificationPDF(student) {
     }
 
     // Marks data (unchanged)
-    firstPage.drawText(`${student.totalMarks}`, { x: 345, y: 310, size: fontSize, font: fontNormal, color: textColor });
+    firstPage.drawText(`${student.totalMarks}`, { x: 300, y: 310, size: fontSize, font: fontNormal, color: textColor });
     // firstPage.drawText(`${student.theoryMarks}`, { x: 385, y: 290, size: fontSize, font: fontNormal, color: textColor });
     // firstPage.drawText(`${student.practicalMarks}`, { x: 385, y: 260, size: fontSize, font: fontNormal, color: textColor });
-    firstPage.drawText(`${student.obtainedMarks}`, { x: 345, y: 290, size: fontSize, font: fontNormal, color: textColor });
-    firstPage.drawText(`${student.percentage}%`, { x: 345, y: 250, size: fontSize, font: fontNormal, color: textColor });
-    firstPage.drawText(`${student.grade}`, { x: 347, y: 225, size: fontSize, font: fontNormal, color: textColor });
+    firstPage.drawText(`${student.obtainedMarks}`, { x: 300, y: 290, size: fontSize, font: fontNormal, color: textColor });
+    firstPage.drawText(`${student.duration}`, { x: 300, y: 270, size: fontSize, font: fontNormal, color: textColor });
+    firstPage.drawText(`${student.percentage}%`, { x: 300, y: 250, size: fontSize, font: fontNormal, color: textColor });
+    firstPage.drawText(`${student.grade}`, { x: 300, y: 225, size: fontSize, font: fontNormal, color: textColor });
+    firstPage.drawText(`${student.certificateIssue}`, { x: 300, y: 205, size: fontSize, font: fontNormal, color: textColor });
+    firstPage.drawText(`SCAN QR CODE`, { x: 47, y: 96, size: 10, font: fontBold, color: textColor });
+    firstPage.drawText(`To VERIFY`, { x: 52, y: 85, size: 10, font: fontBold, color: textColor });
+    const verificationUrl = `https://psdec.com/verification?q=${student.rollNo}`;
+
+// Generate QR code as PNG Data URL
+const qrDataUrl = await QRCode.toDataURL(verificationUrl, { 
+  margin: 1,
+  color: {
+    dark: "#1C4A7E",    // QR dots color
+    light: "#FFFFFF00"  // transparent background (use "#FFFFFF" for white)
+  }
+});
+
+// Convert base64 -> Uint8Array (browser safe)
+const qrImageBytes = Uint8Array.from(
+  atob(qrDataUrl.split(",")[1]),
+  c => c.charCodeAt(0)
+);
+
+// Embed in PDF
+const qrImage = await pdfDoc.embedPng(qrImageBytes);
+
+// Decide size & position
+const qrSize = 80;
+const qrX = 47;
+const qrY = 105; // adjust depending on where you want it
+
+// Draw QR on PDF
+firstPage.drawImage(qrImage, {
+  x: qrX,
+  y: qrY,
+  width: qrSize,
+  height: qrSize,
+});
+
 
     // Save & download
     const pdfBytes = await pdfDoc.save();
