@@ -20,7 +20,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { AddThirdYearForm } from "./AddThirdYearForm";
 import { EditThirdYearForm } from "./EditThirdYearForm";
-import { generateStudentCertificate } from "@/utils/downloadCertificate";
+import { generateStudentCertificate } from "../../utils/thirdYear";
 
 const fetchStudents = async () => {
   const { data } = await axios.get("/api/third-year");
@@ -123,7 +123,6 @@ const ThirdYear = () => {
     { field: "name", headerName: "Name", width: 140 },
     { field: "fatherName", headerName: "Father Name", width: 140 },
     { field: "institute", headerName: "Institute", width: 140 },
-    { field: "year", headerName: "Year", width: 100 },
     { field: "rollNo", headerName: "Roll No", width: 120 },
     { field: "totalMaxMarks", headerName: "Max Marks", width: 120 },
     { field: "totalTheoryObtained", headerName: "Theory Obt", width: 120 },
@@ -133,15 +132,22 @@ const ThirdYear = () => {
       width: 130,
     },
     { field: "totalObtained", headerName: "Total Obt", width: 120 },
-    { field: "grandTotalMarks", headerName: "Grand Total", width: 120 },
-    { field: "grandObtainedMarks", headerName: "Grand Obt", width: 120 },
-    {
-        field: "percentage",
-        headerName: "Percentage (%)",
-        width: 140,
-        type: "number",
-      },
-    { field: "grade", headerName: "Grade", width: 100 },
+    { field:"secondYearTotalMarks", headerName:"2nd Year Total Marks", width:120},
+    { 
+    field: 'secondYearTheoryObtained', 
+    headerName: '2nd Year Theory', 
+    width: 120 
+  },
+  { 
+    field: 'secondYearPracticalObtained', 
+    headerName: '2nd Year Practical', 
+    width: 120 
+  },
+  { 
+    field: 'secondYearTotalObtained', 
+    headerName: '2nd Year Total', 
+    width: 120 
+  },
     {
       field: "actions",
       headerName: "Actions",

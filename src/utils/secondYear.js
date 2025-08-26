@@ -72,9 +72,11 @@ export async function generateStudentCertificate(student) {
   drawText(` ${student.name}`, 150, 430); //Name:
   drawText(`${student.fatherName}`, 150, 413); //Father Name:
   drawText(` ${student.institute}`, 150, 396); //Institute:
+  drawText(`${student.grandTotalObtained}`, 380, 117);
   drawText(`${student.totalTheoryObtained}`, 440, 117); 
   drawText(` ${student.totalPracticalObtained}`, 482, 117);
   drawText(`${student.totalObtained}`, 520, 117); 
+  drawText(`${student.firstYearTotalMarks}`, 380, 330); 
   drawText(`${student.firstYearPracticalObtained}`, 440, 330); 
   drawText(`${student.firstYearTheoryObtained}`, 485, 330); 
   drawText(`${student.firstYearTotalObtained}`, 520, 330); 

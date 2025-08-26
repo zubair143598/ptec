@@ -91,6 +91,24 @@ export const AddStudentForm = ({ open, onClose, onSubmit }) => {
               margin="normal"
             />
             <TextField
+              {...register("rollNo")}
+              label="Roll no"
+              error={!!errors.rollNo}
+              helperText={errors.rollNo?.message}
+              fullWidth
+              margin="normal"
+              />
+
+              <TextField
+              {...register("registrationNo")}
+              label="Registration no"
+              error={!!errors.registrationNo}
+              helperText={errors.registrationNo?.message}
+              fullWidth
+              margin="normal"
+              />
+              
+            <TextField
               {...register("institute")}
               label="Institute"
               error={!!errors.institute}
@@ -98,20 +116,6 @@ export const AddStudentForm = ({ open, onClose, onSubmit }) => {
               fullWidth
               margin="normal"
             />
-            <TextField
-              {...register("year")}
-              select
-              label="Year"
-              error={!!errors.year}
-              helperText={errors.year?.message}
-              fullWidth
-              margin="normal"
-              SelectProps={{ native: true }}
-            >
-              <option value="">Select Year</option>
-              <option value="1st Year">1st Year</option>
-              <option value="2nd Year">2nd Year</option>
-            </TextField>
             <TextField
               {...register("certificateName")}
               label="Certificate Name"

@@ -12,10 +12,12 @@ export const studentFormSchema = z.object({
   session: z.string().min(1, "Session is required"),
   name: z.string().min(1, "Name is required"),
   fatherName: z.string().min(1, "Father's name is required"),
+  rollNo: z.string().min(1, "Roll No is required"),
+  registrationNo: z.string().min(1, "Registration No is required"),
   institute: z.string().min(1, "Institute is required"),
-  year: z.enum(['1st Year', '2nd Year']).default('2nd Year'),
   certificateName: z.string().min(1, "Institute is required"),
   // First year marks
+  firstYearTotalMarks: z.number().min(0, "Must be 0 or greater").default(0),
   firstYearTheoryObtained: z.number().min(0, "Must be 0 or greater").default(0),
   firstYearPracticalObtained: z.number().min(0, "Must be 0 or greater").default(0),
   courses: z.array(courseSchema).min(1, "At least one course is required")

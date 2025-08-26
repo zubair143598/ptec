@@ -9,14 +9,16 @@ export const courseSchema = z.object({
 });
 
 export const thirdYearFormSchema = z.object({
-  session: z.string().min(1, "Session is required"),
+    session: z.string().min(1, "Session is required"),
   name: z.string().min(1, "Name is required"),
   fatherName: z.string().min(1, "Father's name is required"),
-  institute: z.string().min(1, "Institute is required"),
   rollNo: z.string().min(1, "Roll No is required"),
   registrationNo: z.string().min(1, "Registration No is required"),
-  year: z.literal("3rd Year"),
-  grandTotalMarks: z.number().min(1, "Required"),
-  grandObtainedMarks: z.number().min(0, "Required"),
-  courses: z.array(courseSchema).min(1, "At least one course is required"),
+  institute: z.string().min(1, "Institute is required"),
+  certificateName: z.string().min(1, "Institute is required"),
+  // second year marks
+  secondYearTotalMarks: z.number().min(0, "Must be 0 or greater").default(0),
+  secondYearTheoryObtained: z.number().min(0, "Must be 0 or greater").default(0),
+  secondYearPracticalObtained: z.number().min(0, "Must be 0 or greater").default(0),
+  courses: z.array(courseSchema).min(1, "At least one course is required")
 });

@@ -146,25 +146,41 @@ export const EditThirdYearForm = ({
               margin="normal"
               required
             />
-            <TextField
-              {...register("grandTotalMarks", { valueAsNumber: true })}
-              label="Grand Total Marks"
-              type="number"
-              error={!!errors.grandTotalMarks}
-              helperText={errors.grandTotalMarks?.message}
-              fullWidth
-              margin="normal"
-            />
-            <TextField
-              {...register("grandObtainedMarks", { valueAsNumber: true })}
-              label="Grand Obtained Marks"
-              type="number"
-              error={!!errors.grandObtainedMarks}
-              helperText={errors.grandObtainedMarks?.message}
-              fullWidth
-              margin="normal"
-            />
-            <input type="hidden" {...register("year")} value="3rd Year" />
+                  <TextField
+                {...register('secondYearTotalMarks', { valueAsNumber: true })}
+                label="second Year Total Marks"
+                type="number"
+                error={!!errors.secondYearTotalMarks}
+                helperText={errors.secondYearTotalMarks?.message}
+                fullWidth
+                margin="normal"
+              />
+                          <TextField
+                {...register('secondYearTheoryObtained', { valueAsNumber: true })}
+                label="second Year Theory Obtained"
+                type="number"
+                error={!!errors.secondYearTheoryObtained}
+                helperText={errors.secondYearTheoryObtained?.message}
+                fullWidth
+                margin="normal"
+              />
+              <TextField
+                {...register('secondYearPracticalObtained', { valueAsNumber: true })}
+                label="second Year Practical Obtained"
+                type="number"
+                error={!!errors.secondYearPracticalObtained}
+                helperText={errors.secondYearPracticalObtained?.message}
+                fullWidth
+                margin="normal"
+              />
+               <TextField
+                            {...register("certificateName")}
+                            label="Certificate Name"
+                            error={!!errors.certificateName}
+                            helperText={errors.certificateName?.message}
+                            fullWidth
+                            margin="normal"
+                            />
           </Box>
 
           <Typography variant="h6" gutterBottom>

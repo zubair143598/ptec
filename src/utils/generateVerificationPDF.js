@@ -60,14 +60,15 @@ export async function generateVerificationPDF(student) {
     }
 
     // Marks data (unchanged)
-    firstPage.drawText(`${student.totalMarks}`, { x: 300, y: 310, size: fontSize, font: fontNormal, color: textColor });
+    const fontSize2 = 11;
+    firstPage.drawText(`${student.totalMarks}`, { x: 220, y: 310, size: fontSize2, font: fontBold, color: textColor });
     // firstPage.drawText(`${student.theoryMarks}`, { x: 385, y: 290, size: fontSize, font: fontNormal, color: textColor });
     // firstPage.drawText(`${student.practicalMarks}`, { x: 385, y: 260, size: fontSize, font: fontNormal, color: textColor });
-    firstPage.drawText(`${student.obtainedMarks}`, { x: 300, y: 290, size: fontSize, font: fontNormal, color: textColor });
-    firstPage.drawText(`${student.duration}`, { x: 300, y: 270, size: fontSize, font: fontNormal, color: textColor });
-    firstPage.drawText(`${student.percentage}%`, { x: 300, y: 250, size: fontSize, font: fontNormal, color: textColor });
-    firstPage.drawText(`${student.grade}`, { x: 300, y: 225, size: fontSize, font: fontNormal, color: textColor });
-    firstPage.drawText(`${student.certificateIssue}`, { x: 300, y: 205, size: fontSize, font: fontNormal, color: textColor });
+    firstPage.drawText(`${student.obtainedMarks}`, { x: 220, y: 290, size: fontSize2, font: fontBold, color: textColor });
+    firstPage.drawText(`${student.duration}`, { x: 220, y: 270, size: fontSize2, font: fontBold, color: textColor });
+    firstPage.drawText(`${student.percentage}%`, { x: 220, y: 250, size: fontSize2, font: fontBold, color: textColor });
+    firstPage.drawText(`${student.grade}`, { x: 220, y: 225, size: fontSize2, font: fontBold, color: textColor });
+    firstPage.drawText(`${student.certificateIssue}`, { x: 220, y: 205, size: fontSize2, font: fontBold, color: textColor });
     firstPage.drawText(`SCAN QR CODE`, { x: 47, y: 96, size: 10, font: fontBold, color: textColor });
     firstPage.drawText(`To VERIFY`, { x: 52, y: 85, size: 10, font: fontBold, color: textColor });
     const verificationUrl = `https://psdec.com/verification?q=${student.rollNo}`;

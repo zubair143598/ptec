@@ -116,7 +116,6 @@ const FirstYear = () => {
     { field: "name", headerName: "Name", width: 140 },
     { field: "fatherName", headerName: "Father Name", width: 140 },
     { field: "institute", headerName: "Institute", width: 140 },
-    { field: "year", headerName: "Year", width: 100 },
     { field: "rollNo", headerName: "Roll No", width: 120 },
     { field: "totalMaxMarks", headerName: "Max Marks", width: 120 },
     { field: "totalTheoryObtained", headerName: "Theory Obt", width: 120 },

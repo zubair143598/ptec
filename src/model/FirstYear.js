@@ -14,7 +14,6 @@ const studentSchema = new mongoose.Schema({
   name: { type: String, required: true },
   fatherName: { type: String, required: true },
   institute: { type: String, required: true },
-  year: { type: String, default: '1st Year' },
   certificateName: { type: String, required: true },
   rollNo: { type: String, required: true, unique: true },
   courses: [courseSchema],

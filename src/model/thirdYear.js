@@ -1,11 +1,11 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const courseSchema = new mongoose.Schema({
   courseName: { type: String, required: true },
   totalTheory: { type: Number, required: true },
   totalPractical: { type: Number, required: true },
   obtainedTheory: { type: Number, required: true },
-  obtainedPractical: { type: Number, required: true },
+  obtainedPractical: { type: Number, required: true }
 });
 
 const studentSchema = new mongoose.Schema({
@@ -14,46 +14,36 @@ const studentSchema = new mongoose.Schema({
   name: { type: String, required: true },
   fatherName: { type: String, required: true },
   institute: { type: String, required: true },
-  year: { type: String, default: "3rd Year" },
+  certificateName: { type: String, required: true },
   rollNo: { type: String, required: true, unique: true },
   courses: [courseSchema],
+  // second year marks
+  secondYearTotalMarks: { type: Number, default: 0 },
+  secondYearTheoryObtained: { type: Number, default: 0 },
+  secondYearPracticalObtained: { type: Number, default: 0 },
+  secondYearTotalObtained: { type: Number, default: 0 },
+  // third year marks
   totalMaxMarks: { type: Number },
   totalTheoryObtained: { type: Number },
   totalPracticalObtained: { type: Number },
   totalObtained: { type: Number },
-  grandTotalMarks: { type: Number },
-  grandObtainedMarks: { type: Number },
-  percentage: { type: Number },
-  grade: { type: String },
+  // Combined marks
+  grandTotalObtained: { type: Number }
 });
 
-// Pre-save hook to calculate totals
-studentSchema.pre("save", function (next) {
-  this.totalTheoryObtained = this.courses.reduce(
-    (sum, course) => sum + course.obtainedTheory,
-    0
-  );
-  this.totalPracticalObtained = this.courses.reduce(
-    (sum, course) => sum + course.obtainedPractical,
-    0
-  );
+studentSchema.pre('save', function(next) {
+  // second year totals
+  this.secondYearTotalObtained = this.secondYearTheoryObtained + this.secondYearPracticalObtained;
+  
+  // third year totals
+  this.totalTheoryObtained = this.courses.reduce((sum, course) => sum + course.obtainedTheory, 0) + this.secondYearTheoryObtained;
+  this.totalPracticalObtained = this.courses.reduce((sum, course) => sum + course.obtainedPractical, 0) + this.secondYearPracticalObtained;
   this.totalObtained = this.totalTheoryObtained + this.totalPracticalObtained;
-  this.totalMaxMarks = this.courses.reduce(
-    (sum, course) => sum + course.totalTheory + course.totalPractical,
-    0
-  );
-
-  if (this.grandTotalMarks && this.grandObtainedMarks) {
-    this.percentage = (this.grandObtainedMarks / this.grandTotalMarks) * 100;
-
-    if (this.percentage >= 80) this.grade = "A+";
-    else if (this.percentage >= 70) this.grade = "A";
-    else if (this.percentage >= 60) this.grade = "B";
-    else if (this.percentage >= 50) this.grade = "C";
-    else if (this.percentage >= 40) this.grade = "D";
-    else this.grade = "F";
-  }
-
+  this.totalMaxMarks = this.courses.reduce((sum, course) => sum + course.totalTheory + course.totalPractical, 0) + this.secondYearTotalMarks;
+  
+  // Grand total (second year + third year)
+  this.grandTotalObtained = this.secondYearTotalObtained + this.totalObtained;
+  
   next();
 });
 

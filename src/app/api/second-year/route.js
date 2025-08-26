@@ -14,44 +14,12 @@ export async function POST(request) {
     await connectDB();
     const body = await request.json();
 
-    // Generate roll number
-    const lastStudent = await SecondYear.findOne().sort({ _id: -1 }); // Sort by _id instead of rollNo
-    let newRollNo;
-    let newRegNo;
-
-    if (!lastStudent) {
-      // First student case - initial values
-      newRollNo = "20533";
-      newRegNo = "PTEC/PITE/B246-6170";
-    } else {
-      // Get the highest existing numeric roll number
-      const students = await SecondYear.find({})
-        .sort({ _id: -1 })
-        .limit(100);
-      
-      let maxRollNo = 20532; // Default starting point
-      
-      for (const student of students) {
-        const rollNo = parseInt(student.rollNo);
-        if (!isNaN(rollNo)) {
-          maxRollNo = Math.max(maxRollNo, rollNo);
-        }
-      }
-      
-      newRollNo = (maxRollNo + 1).toString();
-      const regNoIncrement = 70 + (maxRollNo + 1 - 20533);
-      newRegNo = `PTEC/PITE/B246-61${regNoIncrement}`;
-    }
-
     // Calculate first year totals
     const firstYearTotalObtained = (body.firstYearTheoryObtained || 0) + (body.firstYearPracticalObtained || 0);
 
     const studentData = {
       ...body,
-      rollNo: newRollNo,
-      registrationNo: newRegNo,
       firstYearTotalObtained,
-      year: '2nd Year'
     };
 
     const student = new SecondYear(studentData);

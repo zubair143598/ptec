@@ -9,37 +9,27 @@ export async function GET() {
 }
 
 export async function POST(request) {
-  try {
+    try {
     await connectDB();
     const body = await request.json();
 
-    // Check for existing student
-    const exists = await ThirdYear.findOne({ 
-      $or: [
-        { registrationNo: body.registrationNo },
-        { rollNo: body.rollNo }
-      ]
-    });
+    // Calculate second year totals
+    const secondYearTotalObtained = (body.secondYearTheoryObtained || 0) + (body.secondYearPracticalObtained || 0);
 
-    if (exists) {
-      return NextResponse.json(
-        { error: "Student with this registration or roll number already exists" },
-        { status: 400 }
-      );
-    }
-
-    const student = new ThirdYear({
+    const studentData = {
       ...body,
-      year: '3rd Year'
-    });
+      secondYearTotalObtained,
+    };
 
+    const student = new ThirdYear(studentData);
     await student.save();
+    
     return NextResponse.json(student, { status: 201 });
   } catch (error) {
-    console.error("POST Error:", error);
+    console.error('Error creating student:', error);
     return NextResponse.json(
-      { error: error.message },
-      { status: 400 }
+      { error: 'Failed to create student', details: error.message },
+      { status: 500 }
     );
   }
 }

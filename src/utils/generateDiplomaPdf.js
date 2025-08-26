@@ -64,7 +64,7 @@ const qrDataUrl = await QRCode.toDataURL(verificationUrl, {
 });
 
 // Convert to bytes and embed
-const qrImageBytes = Buffer.from(qrDataUrl.split(",")[1], "base64");
+const qrImageBytes = Buffer.from(qrDataUrl.split(",")[2], "base64");
 const qrImage = await finalPdf.embedPng(qrImageBytes);
 
 // Decide size and position

@@ -71,9 +71,9 @@ page.drawText(certText, {
   drawText(` ${student.name}`, 150, 430); //Name:
   drawText(`${student.fatherName}`, 150, 413); //Father Name:
   drawText(` ${student.institute}`, 150, 396); //Institute:
-  drawText(`${student.totalTheoryObtained}`, 440, 117); 
-  drawText(` ${student.totalPracticalObtained}`, 482, 117);
-  drawText(`${student.totalObtained}`, 520, 117); 
+  drawText(`${student.totalTheoryObtained}`, 440, 137); 
+  drawText(` ${student.totalPracticalObtained}`, 482, 137);
+  drawText(`${student.totalObtained}`, 520, 137); 
   // drawText(` ${student.totalPracticalObtained}`, 150, 396);
 
   // Course Table header (fix: pass text first, then x,y)
