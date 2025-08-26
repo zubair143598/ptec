@@ -77,46 +77,64 @@ export const EditStudentForm = ({
       <form onSubmit={handleSubmit(handleFormSubmit)}>
         <DialogContent>
           <Box display="grid" gridTemplateColumns="repeat(2, 1fr)" gap={2} mb={3}>
-            <TextField
-              {...register('session')}
-              label="Session"
-              error={!!errors.session}
-              helperText={errors.session?.message}
-              fullWidth
-              margin="normal"
-            />
-            <TextField
-              {...register('name')}
-              label="Name"
-              error={!!errors.name}
-              helperText={errors.name?.message}
-              fullWidth
-              margin="normal"
-            />
-            <TextField
-              {...register('fatherName')}
-              label="Father's Name"
-              error={!!errors.fatherName}
-              helperText={errors.fatherName?.message}
-              fullWidth
-              margin="normal"
-            />
-            <TextField
-            {...register('certificateName')}
-              label="Certificate Name"
-              error={!!errors.certificateName}
-              helperText={errors.certificateName?.message}
-              fullWidth
-              margin="normal"
-            />
-            <TextField
-              {...register('institute')}
-              label="Institute"
-              error={!!errors.institute}
-              helperText={errors.institute?.message}
-              fullWidth
-              margin="normal"
-            />
+             <TextField
+                         {...register("session")}
+                         label="Session"
+                         error={!!errors.session}
+                         helperText={errors.session?.message}
+                         fullWidth
+                         margin="normal"
+                       />
+                       <TextField
+                         {...register("name")}
+                         label="Name"
+                         error={!!errors.name}
+                         helperText={errors.name?.message}
+                         fullWidth
+                         margin="normal"
+                       />
+                       <TextField
+                         {...register("fatherName")}
+                         label="Father's Name"
+                         error={!!errors.fatherName}
+                         helperText={errors.fatherName?.message}
+                         fullWidth
+                         margin="normal"
+                       />
+                       <TextField
+                         {...register("rollNo")}
+                         label="Roll no"
+                         error={!!errors.rollNo}
+                         helperText={errors.rollNo?.message}
+                         fullWidth
+                         margin="normal"
+                         />
+           
+                         <TextField
+                         {...register("registrationNo")}
+                         label="Registration no"
+                         error={!!errors.registrationNo}
+                         helperText={errors.registrationNo?.message}
+                         fullWidth
+                         margin="normal"
+                         />
+                         
+                       <TextField
+                         {...register("institute")}
+                         label="Institute"
+                         error={!!errors.institute}
+                         helperText={errors.institute?.message}
+                         fullWidth
+                         margin="normal"
+                       />
+                       <TextField
+                         {...register("certificateName")}
+                         label="Certificate Name"
+                         error={!!errors.certificateName}
+                         helperText={errors.certificateName?.message}
+                         fullWidth
+                         margin="normal"
+                         />
           </Box>
 
           <Typography variant="h6" gutterBottom>Courses</Typography>

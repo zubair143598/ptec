@@ -10,27 +10,23 @@ export async function GET() {
 
 export async function POST(request) {
   await connectDB();
-  const body = await request.json();
-  
-  // Find the highest roll number to increment
-  const lastStudent = await FirstYear.findOne().sort({ rollNo: -1 });
-  const lastRollNo = lastStudent ? parseInt(lastStudent.rollNo.split('-')[1]) : 10532;
-  const newRollNo = `${lastRollNo + 1}`;
-  
-  // Generate registration number
-  const newRegNo = `PTEC/PITE/A246-61${70 + (lastRollNo + 1 - 10533)}`;
-  
-  const studentData = {
-  ...body,
-  rollNo: newRollNo,
-  registrationNo: newRegNo,
-};
+  try {
+    const body = await request.json();
 
-  const student = new FirstYear(studentData);
-  await student.save();
-  
-  return NextResponse.json(student, { status: 201 });
+    const studentData = {
+      ...body,
+    };
+
+    const student = new FirstYear(studentData);
+    await student.save();
+
+    return NextResponse.json(student, { status: 201 });
+  } catch (error) {
+    console.error("POST /api/first-year Error:", error);
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
 }
+
 
 export async function PUT(request) {
   await connectDB();

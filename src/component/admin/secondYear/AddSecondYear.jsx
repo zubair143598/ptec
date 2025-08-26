@@ -90,6 +90,25 @@ export const AddSecondYear = ({ open, onClose, onSubmit }) => {
               fullWidth
               margin="normal"
             />
+
+<TextField
+              {...register("rollNo")}
+              label="Roll no"
+              error={!!errors.rollNo}
+              helperText={errors.rollNo?.message}
+              fullWidth
+              margin="normal"
+              />
+
+              <TextField
+              {...register("registrationNo")}
+              label="Registration no"
+              error={!!errors.registrationNo}
+              helperText={errors.registrationNo?.message}
+              fullWidth
+              margin="normal"
+              />
+
             <TextField
               {...register("institute")}
               label="Institute"
@@ -98,20 +117,15 @@ export const AddSecondYear = ({ open, onClose, onSubmit }) => {
               fullWidth
               margin="normal"
             />
-            <TextField
-              {...register("year")}
-              select
-              label="Year"
-              error={!!errors.year}
-              helperText={errors.year?.message}
-              fullWidth
-              margin="normal"
-              SelectProps={{ native: true }}
-            >
-              <option value="">Select Year</option>
-              <option value="1st Year">1st Year</option>
-              <option value="2nd Year">2nd Year</option>
-            </TextField>
+                      <TextField
+  {...register('firstYearTotalMarks', { valueAsNumber: true })}
+  label="First Year Total Marks"
+  type="number"
+  error={!!errors.firstYearTotalMarks}
+  helperText={errors.firstYearTotalMarks?.message}
+  fullWidth
+  margin="normal"
+/>
             <TextField
   {...register('firstYearTheoryObtained', { valueAsNumber: true })}
   label="First Year Theory Obtained"
