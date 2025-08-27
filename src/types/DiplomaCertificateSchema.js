@@ -12,4 +12,5 @@ export const DiplomaCertificateSchema = z.object({
   practicalMarks: z.coerce.number().min(0),
   certificateIssue: z.string().min(1),
    serialNumber: z.string().min(1),
+  totalMarks: z.coerce.number().min(0),
 });

@@ -9,9 +9,9 @@ export async function POST(req) {
     const body = await req.json();
     const parsed = DiplomaCertificateSchema.parse(body);
 
-    const { theoryMarks, practicalMarks } = parsed;
+    const { theoryMarks, practicalMarks, totalMarks } = parsed;
     const obtainedMarks = theoryMarks + practicalMarks;
-    const percentage = Number(((obtainedMarks / 3450) * 100).toFixed(2));
+    const percentage = Number(((obtainedMarks / totalMarks) * 100).toFixed(2));
 
     let grade = "F";
     if (percentage >= 80) grade = "A+";
@@ -28,7 +28,6 @@ export async function POST(req) {
       ...parsed,
       rollNo: newRollNo,
       duration: "3 Years",
-      totalMarks: 3450,
       obtainedMarks,
       percentage,
       grade,

@@ -12,7 +12,7 @@ const DiplomaCertificateSchema = new mongoose.Schema({
   theoryMarks: { type: Number, required: true },
   practicalMarks: { type: Number, required: true },
   duration: { type: String, default: "3 Years" },
-  totalMarks: { type: Number, default: 3450 },
+  totalMarks: { type: Number, required: true },
   obtainedMarks: Number,
   percentage: Number,
   grade: String,
