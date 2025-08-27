@@ -27,6 +27,8 @@ const FIELDS = [
   { label: "Theory Marks", name: "theoryMarks", type: "number" },
   { label: "Practical Marks", name: "practicalMarks", type: "number" },
   { label: "Issue Date", name: "certificateIssue" },
+  { label: "Serial Number", name: "serialNumber" },
+  { label: "Total Marks", name: "totalMarks", type: "number" },
 ];
 
 const EditDiplomaForm = ({ open, handleClose, student, onUpdated }) => {

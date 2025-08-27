@@ -64,7 +64,7 @@ const qrDataUrl = await QRCode.toDataURL(verificationUrl, {
 });
 
 // Convert to bytes and embed
-const qrImageBytes = Buffer.from(qrDataUrl.split(",")[2], "base64");
+const qrImageBytes = Buffer.from(qrDataUrl.split(",")[1], "base64");
 const qrImage = await finalPdf.embedPng(qrImageBytes);
 
 // Decide size and position
@@ -90,7 +90,7 @@ page2.drawImage(qrImage, {
   font,
   color: rgb(0.11, 0.29, 0.49), // "#1C4A7E" in pdf-lib requires rgb()
 });
-  page2.drawText(String(student.rollNo),   { x: 132, y: 130, size: size12, font, color: black });
+  page2.drawText(String(student.rollNo),   { x: 152, y: 60, size: size12, font, color: black });
 
 
   // 7. Save final PDF with both pages
